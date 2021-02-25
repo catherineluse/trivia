@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+$highlight: #bffffd;
+$lowlight: #06246e;
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+i {
+    margin-right: 10px;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+th {
+    text-align: center;
+}
+
+.App {
+    text-align: center;
+}
+
+.btn {
+    margin: 5px;
+    font-weight: bold;
+    background-color: $lowlight;
+    border: 1px solid $highlight;
+    color: $highlight;
+    &:hover {
+        color: $lowlight;
+        background-color: $highlight;
+        border: 1px solid $lowlight;
+    }
+}
+
+.card {
+    margin: 20px;
+    border: 1px solid $lowlight;
+}
+
+.card-header {
+    color: $highlight;
+    background-color: $lowlight;
+}
+
+.card-body {
+    font-size: 20px;
+    min-height: 130px;
+}
+
+.category {
+    font-family: monospace;
+    font-size: 18px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+}
+
+.correct {
+    color: #32bf32;
+}
+
+.incorrect {
+    color: #f55d42;
+}
+
+.table {
+    text-align: left;
+}
+
+.question {
+    border: 1px solid black;
+    text-align: left;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

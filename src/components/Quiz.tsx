@@ -3,6 +3,24 @@ import { Link, useHistory } from 'react-router-dom';
 import categoryIcons from '../categories';
 import decodedQuestion from '../utils';
 
+type Question = {
+  category: string,
+  correct_answer: string,
+  question: string,
+};
+
+type Props = {
+  questions: Array<Question>,
+  userAnswersForCurrentQuiz: Array<string>,
+  setUserAnswersForCurrentQuiz: Function,
+  score: number,
+  setScore: Function,
+  resetGame: Function,
+  positionInQuiz: number,
+  setPositionInQuiz: Function,
+};
+
+
 const Quiz = ({
   questions,
   userAnswersForCurrentQuiz,
@@ -12,7 +30,7 @@ const Quiz = ({
   resetGame,
   positionInQuiz,
   setPositionInQuiz,
-}) => {
+}: Props) => {
   const history = useHistory();
 
   if (questions.length === 0) {
@@ -23,7 +41,7 @@ const Quiz = ({
 
   const { category, correct_answer, question } = currentQuestion;
 
-  const checkAnswer = (answer) => {
+  const checkAnswer = (answer: string) => {
     if (answer === correct_answer) {
       setPositionInQuiz(positionInQuiz + 1);
       setScore(score + 1);
@@ -41,13 +59,19 @@ const Quiz = ({
     }
   };
 
+  // The categoryIcons object is a way to look up
+  // the Font Awesome icon that goes with a given category.
+  // @ts-ignore
+  const categoryIconClassName = categoryIcons[category]['icon'];
+
   return (
     <div className='container'>
       <h1>{'Trivia Challenge'}</h1>
 
       <div className='card'>
         <h2 className='card-header category'>
-          <i className={`${categoryIcons[category]['icon']}`}></i>
+          
+          <i className={categoryIconClassName}></i>
           {category}
         </h2>
         <div className='card-body'>{decodedQuestion(question)}</div>
@@ -74,7 +98,9 @@ const Quiz = ({
       <div className='position'>{`Question ${positionInQuiz + 1} of 10`}</div>
       <div className='score'>{`You scored ${score} of 10`}</div>
       <Link to='/quiz'>
-        <button className='btn' onClick={resetGame}>
+        <button className='btn' onClick={() => {
+          resetGame()
+        }}>
           Reset
         </button>
       </Link>

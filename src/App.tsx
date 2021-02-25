@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Quiz from './components/Quiz';
@@ -32,7 +31,7 @@ function App() {
     fetchQuestions();
   }, []);
 
-  const resetGame = () => {
+  const resetGame = (): void => {
     setScore(0);
     setPositionInQuiz(0);
     setUserAnswersForCurrentQuiz([]);

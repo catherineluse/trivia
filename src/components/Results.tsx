@@ -2,12 +2,24 @@ import React from 'react';
 import decodedQuestion from '../utils';
 import { Link } from 'react-router-dom';
 
+type Question = {
+  correct_answer: string,
+  question: string,
+};
+
+type Props = {
+  questions: Array<Question>,
+  userAnswersForCurrentQuiz: Array<string>,
+  score: number,
+  resetGame: Function,
+}
+
 const Results = ({
   questions,
   userAnswersForCurrentQuiz,
   score,
   resetGame,
-}) => {
+}: Props) => {
   const getResults = () => {
     if (userAnswersForCurrentQuiz.length === 0) {
       return (
@@ -64,7 +76,9 @@ const Results = ({
         </table>
       </div>
       <Link to='/quiz'>
-        <button className='btn' onClick={resetGame}>
+        <button className='btn' onClick={() => {
+          resetGame()
+        }}>
           Start New Quiz
         </button>
       </Link>
